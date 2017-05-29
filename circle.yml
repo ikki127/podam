@@ -2,8 +2,14 @@ language: java
 jdk:
   - oraclejdk8
   - oraclejdk7
+  
 script:
   - mvn clean verify
+  
+dependencies:
+  override:
+    - mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline
+  
 branches:
   only:
     - develop
