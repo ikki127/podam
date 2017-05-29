@@ -13,9 +13,10 @@ dependencies:
 branches:
   only:
     - develop
-test: 
-  override: 
-  - echo "test"
+    
+test:
+  override:
+    - mvn -o surefire:test
     
 after_success:
 - bash <(curl -s https://codecov.io/bash)
