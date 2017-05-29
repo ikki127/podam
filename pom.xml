@@ -2,15 +2,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-  	<servers>
-    	<server>
-      	<id>packagecloud-examplecorp</id>
-      	<password>${env.EXAMPLECORP_PACKAGECLOUD_API_TOKEN}</password>
-    	</server>
-  	</servers>
-	</settings>
-
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
@@ -187,6 +178,13 @@
 				<version>0.3.1</version>
 			</extension>
 		</extensions>
+		  <extensions>
+    			<extension>
+      			<groupId>io.packagecloud.maven.wagon</groupId>
+      			<artifactId>maven-packagecloud-wagon</artifactId>
+     			 <version>0.0.4</version>
+    			</extension>
+  		</extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
@@ -424,6 +422,7 @@
 		</plugins>
 	</reporting>
 	<distributionManagement>
+		
 		<snapshotRepository>
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -436,7 +435,17 @@
 			<id>github-project-site</id>
 			<url>gitsite:git@github.com/devopsfolks/podam.git</url>
 		</site>
+		
+ 		 <repository>
+    		<id>packagecloud-examplecorp</id>
+    		<url>packagecloud+https://packagecloud.io/exampleCorp/core</url>
+  		</repository>
+  		<snapshotRepository>
+   		 <id>packagecloud-examplecorp</id>
+    		<url>packagecloud+https://packagecloud.io/exampleCorp/core</url>
+  		</snapshotRepository>
 	</distributionManagement>
+	
 
 	<dependencies>
 		<dependency>
